@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gadgets de 2026 — Os Dispositivos Mais Futuristas do Mercado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #060810;
+    --bg2: #0c1022;
+    --bg3: #111628;
+    --surface: #141930;
+    --border: rgba(100,120,255,0.15);
+    --border2: rgba(100,120,255,0.3);
+    --text: #e8ecff;
+    --muted: #7880a8;
+    --accent: #4f6fff;
+    --accent2: #7c5cff;
+    --accent3: #00d4aa;
+    --accent4: #ff6b6b;
+    --accent5: #ffb347;
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'Space Grotesk', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── GRID BG ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(79,111,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(79,111,255,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── GLOW ORBS ── */
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.35;
+  }
+  .orb-1 { width: 500px; height: 500px; background: #4f6fff; top: -150px; right: -100px; }
+  .orb-2 { width: 400px; height: 400px; background: #7c5cff; bottom: 10%; left: -120px; }
+  .orb-3 { width: 300px; height: 300px; background: #00d4aa; top: 50%; left: 50%; transform: translate(-50%,-50%); opacity: 0.15; }
+
+  /* ── WRAPPER ── */
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* ── HEADER ── */
+  header {
+    padding: 4rem 0 2rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent3);
+    border: 1px solid rgba(0,212,170,0.3);
+    padding: 4px 14px;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+  }
+  .tag::before { content: '//'; opacity: 0.6; }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 7vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #fff 0%, #c8d0ff 50%, #7c9fff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1.2rem;
+  }
+
+  .subtitle {
+    font-size: 1.15rem;
+    color: var(--muted);
+    max-width: 580px;
+    margin: 0 auto 2rem;
+  }
+
+  .meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 13px;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    flex-wrap: wrap;
+  }
+  .meta span { display: flex; align-items: center; gap: 6px; }
+  .meta .dot { width: 4px; height: 4px; background: var(--border2); border-radius: 50%; }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border2), transparent);
+    margin: 3rem 0;
+  }
+
+  /* ── INTRO BOX ── */
+  .intro-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 3.5rem;
+    font-size: 1.05rem;
+    color: #c8d0ff;
+    line-height: 1.8;
+  }
+
+  /* ── STATS ROW ── */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-bottom: 3.5rem;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: var(--font-mono);
+  }
+
+  /* ── SECTION TITLE ── */
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .section-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .section-desc {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+
+  /* ── GADGET CARDS ── */
+  .gadgets-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+  @media (max-width: 620px) { .gadgets-grid { grid-template-columns: 1fr; } }
+
+  .gadget-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.6rem;
+    transition: border-color 0.25s, transform 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .gadget-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--card-accent, var(--accent));
+    border-radius: 12px 12px 0 0;
+  }
+  .gadget-card:hover {
+    border-color: var(--border2);
+    transform: translateY(-3px);
+  }
+  .gadget-card.wide {
+    grid-column: 1 / -1;
+  }
+
+  .card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: var(--card-icon-bg, rgba(79,111,255,0.12));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 22px;
+  }
+  .card-badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-bottom: 0.7rem;
+    background: var(--card-badge-bg, rgba(79,111,255,0.15));
+    color: var(--card-badge-color, var(--accent));
+  }
+  .card-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+    line-height: 1.2;
+  }
+  .card-body {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .card-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 1rem;
+  }
+  .chip {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    border: 1px solid var(--border2);
+    color: var(--muted);
+    letter-spacing: 0.5px;
+  }
+
+  /* ── HIGHLIGHT BOX ── */
+  .highlight {
+    background: linear-gradient(135deg, rgba(79,111,255,0.08), rgba(124,92,255,0.08));
+    border: 1px solid rgba(79,111,255,0.25);
+    border-radius: 12px;
+    padding: 2rem 2.2rem;
+    margin: 3rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .highlight::after {
+    content: '→';
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2.5rem;
+    opacity: 0.08;
+  }
+  .highlight-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 11px;
+    font-family: var(--font-mono);
+    margin-bottom: 0.6rem;
+  }
+  .highlight p {
+    color: #c8d0ff;
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 3rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 4px;
+    bottom: 4px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -1.7rem;
+    top: 7px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 0 3px rgba(79,111,255,0.2);
+  }
+  .tl-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent3);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .tl-title {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 5px;
+  }
+  .tl-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  /* ── CONCLUSION ── */
+  .conclusion {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2.5rem;
+    margin-bottom: 4rem;
+    text-align: center;
+  }
+  .conclusion h2 {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #fff, #c8d0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .conclusion p {
+    color: var(--muted);
+    max-width: 580px;
+    margin: 0 auto;
+    font-size: 0.95rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 0;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+    position: relative;
+    z-index: 1;
+  }
+</style>
+</head>
+<body>
+
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<div class="wrap">
+
+  <!-- HEADER -->
+  <header>
+    <div class="tag">Tecnologia · 2026</div>
+    <h1>Gadgets de 2026</h1>
+    <p class="subtitle">Os dispositivos tecnológicos mais futuristas do mercado — um novo ciclo de inovação chegou, e ele muda tudo que você conhecia.</p>
+    <div class="meta">
+      <span>📅 Maio 2026</span>
+      <span class="dot"></span>
+      <span>⏱ 8 min de leitura</span>
+      <span class="dot"></span>
+      <span>🔬 Tech & Inovação</span>
+    </div>
+  </header>
+
+  <hr class="divider">
+
+  <!-- INTRO -->
+  <div class="intro-box">
+    O ano de 2026 marca uma virada histórica na tecnologia de consumo. Após anos de promessas futuristas, a convergência real entre <strong>inteligência artificial embarcada</strong>, <strong>displays flexíveis</strong>, <strong>sensores biométricos avançados</strong> e <strong>realidade aumentada</strong> finalmente chegou em produtos que você pode comprar — e usar no dia a dia. Não são mais protótipos de laboratório. São gadgets reais, com preços reais, que redefinem como trabalhamos, nos comunicamos e vivemos.
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat-card">
+      <span class="stat-num">+25%</span>
+      <span class="stat-label">Crescimento do mercado ao ano</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">90%</span>
+      <span class="stat-label">Wearables com IA integrada</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">75%</span>
+      <span class="stat-label">Smartphones com RA nativa</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">−40%</span>
+      <span class="stat-label">Redução no lixo eletrônico</span>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 1: SMARTPHONES -->
+  <span class="section-num">// 01 — Smartphones</span>
+  <h2 class="section-title">A Era dos Foldables Chegou de Vez</h2>
+  <p class="section-desc">Telas dobráveis saem do nicho e entram no mainstream com hardware que finalmente justifica o preço.</p>
+
+  <div class="gadgets-grid">
+    <div class="gadget-card" style="--card-accent:#4f6fff; --card-icon-bg:rgba(79,111,255,0.12); --card-badge-bg:rgba(79,111,255,0.12); --card-badge-color:#7c9fff">
+      <div class="card-icon">📱</div>
+      <span class="card-badge">Samsung · Flagship</span>
+      <div class="card-title">Galaxy Z TriFold</div>
+      <div class="card-body">Três painéis dobráveis que transformam o celular em um tablet compacto. Apresentado no CES 2026, combina portabilidade máxima com a funcionalidade de multitarefa simultânea em telas diferentes — um salto real no conceito de produtividade móvel.</div>
+      <div class="card-features">
+        <span class="chip">3 telas dobráveis</span>
+        <span class="chip">Multitarefa avançada</span>
+        <span class="chip">Câmeras pro</span>
+      </div>
+    </div>
+
+    <div class="gadget-card" style="--card-accent:#ff6b6b; --card-icon-bg:rgba(255,107,107,0.1); --card-badge-bg:rgba(255,107,107,0.1); --card-badge-color:#ff8e8e">
+      <div class="card-icon">🍎</div>
+      <span class="card-badge">Apple · Estreia</span>
+      <div class="card-title">iPhone Fold</div>
+      <div class="card-body">O primeiro iPhone dobrável da história, revelado após o MWC 2026. A Apple entrou com tudo no segmento foldable, trazendo seu ecossistema refinado para um formato inédito — e promovendo integração nativa com todos os seus outros dispositivos.</div>
+      <div class="card-features">
+        <span class="chip">Primeiro foldable Apple</span>
+        <span class="chip">Ecossistema Apple</span>
+        <span class="chip">iOS otimizado</span>
+      </div>
+    </div>
+
+    <div class="gadget-card wide" style="--card-accent:#00d4aa; --card-icon-bg:rgba(0,212,170,0.1); --card-badge-bg:rgba(0,212,170,0.1); --card-badge-color:#00d4aa">
+      <div class="card-icon">⚡</div>
+      <span class="card-badge">Samsung · Ultra</span>
+      <div class="card-title">Galaxy S26 Ultra — IA Totalmente Local</div>
+      <div class="card-body">O carro-chefe da Samsung em 2026 chegou com o Snapdragon 8 Gen 5, 30% mais eficiente que a geração anterior, e 16 GB de RAM de série. O diferencial é a IA processada diretamente no dispositivo — sem depender da nuvem — mais rápida e, principalmente, mais privada. Tela Dynamic LTPO AMOLED 2X de 6,9 polegadas, brilho de até 3.000 nits e caneta S Pen integrada completam o pacote.</div>
+      <div class="card-features">
+        <span class="chip">Snapdragon 8 Gen 5</span>
+        <span class="chip">IA Local (offline)</span>
+        <span class="chip">16 GB RAM</span>
+        <span class="chip">S Pen integrada</span>
+        <span class="chip">3.000 nits</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SEÇÃO 2: WEARABLES -->
+  <span class="section-num">// 02 — Wearables</span>
+  <h2 class="section-title">Tecnologia que Você Veste — e que Te Conhece</h2>
+  <p class="section-desc">Óculos inteligentes, anéis de saúde e fones neurais transformam o corpo em uma interface.</p>
+
+  <div class="gadgets-grid">
+    <div class="gadget-card" style="--card-accent:#7c5cff; --card-icon-bg:rgba(124,92,255,0.12); --card-badge-bg:rgba(124,92,255,0.12); --card-badge-color:#a080ff">
+      <div class="card-icon">🕶️</div>
+      <span class="card-badge">Meta x Ray-Ban · V2</span>
+      <div class="card-title">Óculos AR com Assistente de IA</div>
+      <div class="card-body">A segunda geração da colaboração entre Meta e Ray-Ban chega com assistente de IA integrado, câmera embutida e design socialmente aceito — sem o peso e o estranhamento dos headsets de VR. Transmite ao vivo para o Instagram, faz fotos e responde perguntas por voz. Bateria de 24h e Snapdragon Wear Elite.</div>
+      <div class="card-features">
+        <span class="chip">RA discreta</span>
+        <span class="chip">IA por voz</span>
+        <span class="chip">Live Instagram</span>
+        <span class="chip">24h bateria</span>
+      </div>
+    </div>
+
+    <div class="gadget-card" style="--card-accent:#00d4aa; --card-icon-bg:rgba(0,212,170,0.1); --card-badge-bg:rgba(0,212,170,0.1); --card-badge-color:#00d4aa">
+      <div class="card-icon">💍</div>
+      <span class="card-badge">Saúde · Discreto</span>
+      <div class="card-title">Smart Ring de 50 Métricas</div>
+      <div class="card-body">Um anel discreto capaz de rastrear 50 métricas biométricas e prever riscos de saúde com 98% de precisão em testes clínicos. Detecta estresse precoce, arritmias e padrões de sono. O aplicativo gera recomendações personalizadas baseadas no seu comportamento. Saúde preventiva no dedo, sem esforço.</div>
+      <div class="card-features">
+        <span class="chip">50 métricas</span>
+        <span class="chip">98% precisão</span>
+        <span class="chip">Estresse & sono</span>
+        <span class="chip">App personalizado</span>
+      </div>
+    </div>
+
+    <div class="gadget-card" style="--card-accent:#ff6b6b; --card-icon-bg:rgba(255,107,107,0.1); --card-badge-bg:rgba(255,107,107,0.1); --card-badge-color:#ff8e8e">
+      <div class="card-icon">🎧</div>
+      <span class="card-badge">Apple · Neural</span>
+      <div class="card-title">Neural AirPods</div>
+      <div class="card-body">O maior avanço em fones de ouvido desde a invenção do headphone. Sensores neurais não-invasivos detectam a intenção do usuário através de sinais biométricos, sem precisar tocar no dispositivo. ANC que se ajusta ao ambiente em tempo real, sensor de frequência cardíaca e integração com o assistente Apple Intelligence.</div>
+      <div class="card-features">
+        <span class="chip">Sensores neurais</span>
+        <span class="chip">ANC adaptativo</span>
+        <span class="chip">Frequência cardíaca</span>
+      </div>
+    </div>
+
+    <div class="gadget-card" style="--card-accent:#ffb347; --card-icon-bg:rgba(255,179,71,0.1); --card-badge-bg:rgba(255,179,71,0.1); --card-badge-color:#ffb347">
+      <div class="card-icon">⌚</div>
+      <span class="card-badge">Wearables · 2026</span>
+      <div class="card-title">Smartwatch com IA Preditiva</div>
+      <div class="card-body">A nova geração de smartwatches com Snapdragon Wear Elite traz IA local sem depender da nuvem. O dispositivo aprende sua rotina, antecipa necessidades, resume emails longos e projeta gráficos em tempo real. Sensores biométricos de última geração monitoram glicose estimada, pressão e qualidade do sono com precisão clínica.</div>
+      <div class="card-features">
+        <span class="chip">IA preditiva local</span>
+        <span class="chip">Glicose estimada</span>
+        <span class="chip">Aprendizado contínuo</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HIGHLIGHT -->
+  <div class="highlight">
+    <div class="highlight-title">// Insight do mercado</div>
+    <p>De acordo com analistas do setor, a inteligência artificial já está presente em <strong>90% dos wearables lançados em 2026</strong>. A diferença não está mais nas especificações de hardware, mas na qualidade da experiência — hardware, software e serviços funcionando como um sistema único e personalizado para cada usuário.</p>
+  </div>
+
+  <!-- SEÇÃO 3: CASA E DISPLAYS -->
+  <span class="section-num">// 03 — Casa Inteligente & Displays</span>
+  <h2 class="section-title">O Ambiente que Responde a Você</h2>
+  <p class="section-desc">IoT, telas transparentes e robôs domésticos transformam a casa em uma extensão digital da vida.</p>
+
+  <div class="gadgets-grid">
+    <div class="gadget-card" style="--card-accent:#4f6fff; --card-icon-bg:rgba(79,111,255,0.12); --card-badge-bg:rgba(79,111,255,0.12); --card-badge-color:#7c9fff">
+      <div class="card-icon">📺</div>
+      <span class="card-badge">LG · CES 2026</span>
+      <div class="card-title">LG OLED evo W6 — TV de 9mm</div>
+      <div class="card-body">A LG ressuscitou sua linha mais radical com apenas 9mm de espessura, usando arquitetura modular com a Zero Connect Box separando conexões e processamento do painel. Uma TV que se parece com uma obra de arte pendurada na parede — sem cabos visíveis, sem transformar a sala em showroom técnico.</div>
+      <div class="card-features">
+        <span class="chip">9mm espessura</span>
+        <span class="chip">OLED evo</span>
+        <span class="chip">Zero Connect Box</span>
+      </div>
+    </div>
+
+    <div class="gadget-card" style="--card-accent:#00d4aa; --card-icon-bg:rgba(0,212,170,0.1); --card-badge-bg:rgba(0,212,170,0.1); --card-badge-color:#00d4aa">
+      <div class="card-icon">🏠</div>
+      <span class="card-badge">IoT · Passivo</span>
+      <div class="card-title">Sensores Ambientais Sem Wearable</div>
+      <div class="card-body">A nova tendência da casa inteligente: sensores ambientais que monitoram saúde e presença sem que você precise vestir nada. Detectam qualidade do sono, movimentos e padrões de comportamento de forma invisível — eliminando a necessidade de dispositivos no corpo para quem prefere tecnologia menos invasiva.</div>
+      <div class="card-features">
+        <span class="chip">Sem wearable</span>
+        <span class="chip">Monitoramento passivo</span>
+        <span class="chip">Sono & presença</span>
+      </div>
+    </div>
+
+    <div class="gadget-card" style="--card-accent:#7c5cff; --card-icon-bg:rgba(124,92,255,0.12); --card-badge-bg:rgba(124,92,255,0.12); --card-badge-color:#a080ff">
+      <div class="card-icon">🤖</div>
+      <span class="card-badge">Robótica · Doméstico</span>
+      <div class="card-title">Mini Robôs Domésticos Especializados</div>
+      <div class="card-body">Não são humanoides. São robôs compactos projetados para tarefas específicas: monitorar a casa na sua ausência, detectar fumaça e vazamentos, interagir com pets e funcionar como câmera móvel para videochamadas. A CES 2026 apresentou o David, da Realbotix — um dos mais avançados do segmento.</div>
+      <div class="card-features">
+        <span class="chip">Compacto</span>
+        <span class="chip">Câmera móvel</span>
+        <span class="chip">Detecção de riscos</span>
+      </div>
+    </div>
+
+    <div class="gadget-card" style="--card-accent:#ffb347; --card-icon-bg:rgba(255,179,71,0.1); --card-badge-bg:rgba(255,179,71,0.1); --card-badge-color:#ffb347">
+      <div class="card-icon">💻</div>
+      <span class="card-badge">Lenovo · Gaming</span>
+      <div class="card-title">Legion Pro — Tela Rollable</div>
+      <div class="card-body">Um laptop gamer com tela expansível que pode ser esticada ou reduzida conforme a necessidade durante a sessão de jogo. Leve, portátil e com alta performance — processadores de última geração e placas de vídeo topo de linha num design que se adapta ao ambiente, seja em casa ou em torneios.</div>
+      <div class="card-features">
+        <span class="chip">Tela rollable</span>
+        <span class="chip">GPU de última geração</span>
+        <span class="chip">Design adaptável</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- TIMELINE -->
+  <span class="section-num">// 04 — Linha do tempo</span>
+  <h2 class="section-title" style="margin-bottom:1.5rem">Os Marcos de 2026</h2>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-label">Janeiro 2026 · CES Las Vegas</div>
+      <div class="tl-title">CES 2026 — O Ano do Refinamento</div>
+      <div class="tl-desc">A Consumer Electronics Show apresentou o Samsung Galaxy Z TriFold, a LG OLED evo W6, o Lenovo Legion Pro com tela rollable e os primeiros robôs domésticos compactos. Em vez de revolucionar com promessas vazias, as empresas apostaram em refinamento estrutural e IA menos espalhafatosa, porém mais útil.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-label">Fevereiro–Março 2026 · MWC Barcelona</div>
+      <div class="tl-title">Era dos Foldables — Samsung e Apple Cara a Cara</div>
+      <div class="tl-desc">O MWC 2026 consolidou o segmento dobrável: Samsung revelou o Galaxy S26 Ultra e Apple confirmou o primeiro iPhone Fold da história. A disputa entre os dois gigantes acelerou inovações em eficiência energética e processamento de IA local, beneficiando todo o mercado.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-label">2026 em diante · Mercado global</div>
+      <div class="tl-title">IA Embarcada Torna-se Padrão, Não Diferencial</div>
+      <div class="tl-desc">Com o Snapdragon 8 Gen 5 e o Snapdragon Wear Elite, processamento de IA local deixou de ser exclusividade de flagships. A privacidade ganhou, a velocidade ganhou, e o usuário final ganhou. Wearables com IA embarcada chegam à marca de 90% dos lançamentos do ano.</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SEÇÃO SUSTENTABILIDADE -->
+  <span class="section-num">// 05 — Sustentabilidade Tech</span>
+  <h2 class="section-title">Tecnologia que Pensa no Planeta</h2>
+  <p class="section-desc">2026 marca a virada em que ecodesign deixa de ser marketing e vira requisito técnico.</p>
+
+  <div class="intro-box" style="border-left-color: var(--accent3);">
+    Uma tendência que cresceu silenciosamente: gadgets com <strong>baterias solares flexíveis</strong>, materiais reciclados e ciclos de vida projetados para durar. Óculos que carregam no sol, smartphones com carcaças de plástico oceânico e eletrodomésticos inteligentes com consumo otimizado por IA. Especialistas projetam redução de até <strong>40% no lixo eletrônico</strong> global graças a essas iniciativas — lideradas por Apple e Samsung, que começam a estender garantias e oferecer programas de reparo padronizados.
+  </div>
+
+  <!-- CONCLUSÃO -->
+  <div class="conclusion">
+    <h2>O Futuro Não Está Chegando — Já Está Aqui</h2>
+    <p>2026 não é o ano das promessas futuristas. É o ano em que elas se tornaram realidade comprável. Smartphones que se dobram três vezes, óculos que veem o que você vê, anéis que conhecem sua saúde melhor que você mesmo. A pergunta não é mais <em>quando</em> a tecnologia vai mudar tudo — é <em>como</em> você vai usar essa mudança.</p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>Artigo produzido com curadoria de lançamentos do CES 2026, MWC Barcelona e principais publicações de tecnologia · Maio 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>

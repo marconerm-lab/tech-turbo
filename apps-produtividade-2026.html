@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apps que Aumentam Produtividade — Economize Tempo e Ganhe Eficiência</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #060810;
+    --bg2: #0c1022;
+    --bg3: #111628;
+    --surface: #141930;
+    --border: rgba(100,120,255,0.15);
+    --border2: rgba(100,120,255,0.3);
+    --text: #e8ecff;
+    --muted: #7880a8;
+    --accent: #4f6fff;
+    --accent2: #7c5cff;
+    --accent3: #00d4aa;
+    --accent4: #ff6b6b;
+    --accent5: #ffb347;
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'Space Grotesk', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(79,111,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(79,111,255,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.35;
+  }
+  .orb-1 { width: 500px; height: 500px; background: #00d4aa; top: -150px; right: -100px; }
+  .orb-2 { width: 400px; height: 400px; background: #4f6fff; bottom: 10%; left: -120px; }
+  .orb-3 { width: 300px; height: 300px; background: #7c5cff; top: 55%; left: 50%; transform: translate(-50%,-50%); opacity: 0.15; }
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* ── HEADER ── */
+  header {
+    padding: 4rem 0 2rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent3);
+    border: 1px solid rgba(0,212,170,0.3);
+    padding: 4px 14px;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+  }
+  .tag::before { content: '//'; opacity: 0.6; }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 7vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #fff 0%, #c8fff0 50%, #00d4aa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1.2rem;
+  }
+
+  .subtitle {
+    font-size: 1.15rem;
+    color: var(--muted);
+    max-width: 580px;
+    margin: 0 auto 2rem;
+  }
+
+  .meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 13px;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    flex-wrap: wrap;
+  }
+  .meta .dot { width: 4px; height: 4px; background: var(--border2); border-radius: 50%; }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border2), transparent);
+    margin: 3rem 0;
+  }
+
+  /* ── INTRO BOX ── */
+  .intro-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent3);
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 3.5rem;
+    font-size: 1.05rem;
+    color: #c8d0ff;
+    line-height: 1.8;
+  }
+
+  /* ── STATS ── */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-bottom: 3.5rem;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #00d4aa, #4f6fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: var(--font-mono);
+  }
+
+  /* ── SECTION ── */
+  .section-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent3);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .section-desc {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+
+  /* ── APP CARDS ── */
+  .apps-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+  @media (max-width: 620px) { .apps-grid { grid-template-columns: 1fr; } }
+
+  .app-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.6rem;
+    transition: border-color 0.25s, transform 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .app-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--card-accent, var(--accent3));
+    border-radius: 12px 12px 0 0;
+  }
+  .app-card:hover {
+    border-color: var(--border2);
+    transform: translateY(-3px);
+  }
+  .app-card.wide { grid-column: 1 / -1; }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.9rem;
+  }
+  .card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: var(--card-icon-bg, rgba(0,212,170,0.12));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .card-meta { flex: 1; }
+  .card-badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-bottom: 4px;
+    background: var(--card-badge-bg, rgba(0,212,170,0.12));
+    color: var(--card-badge-color, var(--accent3));
+  }
+  .card-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .card-body {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .card-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 1rem;
+  }
+  .chip {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    border: 1px solid var(--border2);
+    color: var(--muted);
+    letter-spacing: 0.5px;
+  }
+
+  /* ── RATING BAR ── */
+  .rating-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 0.9rem;
+    font-size: 12px;
+    font-family: var(--font-mono);
+  }
+  .rating-label { color: var(--muted); min-width: 90px; }
+  .rating-bar-bg {
+    flex: 1;
+    height: 4px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .rating-bar-fill {
+    height: 100%;
+    border-radius: 99px;
+    background: var(--bar-color, var(--accent3));
+  }
+  .rating-val { color: var(--text); min-width: 28px; text-align: right; }
+
+  /* ── HIGHLIGHT ── */
+  .highlight {
+    background: linear-gradient(135deg, rgba(0,212,170,0.06), rgba(79,111,255,0.06));
+    border: 1px solid rgba(0,212,170,0.2);
+    border-radius: 12px;
+    padding: 2rem 2.2rem;
+    margin: 3rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .highlight::after {
+    content: '⚡';
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 3rem;
+    opacity: 0.06;
+  }
+  .highlight-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent3);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+  .highlight p {
+    color: #c8d0ff;
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  /* ── COMPARISON TABLE ── */
+  .compare-wrap {
+    overflow-x: auto;
+    margin-bottom: 3rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    background: var(--surface);
+  }
+  thead tr {
+    background: rgba(79,111,255,0.06);
+    border-bottom: 1px solid var(--border);
+  }
+  th {
+    padding: 0.9rem 1.1rem;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    font-weight: 400;
+  }
+  td {
+    padding: 0.75rem 1.1rem;
+    border-bottom: 1px solid rgba(100,120,255,0.07);
+    color: var(--muted);
+    vertical-align: middle;
+  }
+  td:first-child { color: var(--text); font-weight: 500; }
+  tr:last-child td { border-bottom: none; }
+  .yes { color: var(--accent3); font-family: var(--font-mono); font-size: 13px; }
+  .no  { color: #ff6b6b; font-family: var(--font-mono); font-size: 13px; opacity: 0.7; }
+  .par { color: var(--accent5); font-family: var(--font-mono); font-size: 12px; }
+
+  /* ── TIPS ── */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+  .tip-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.3rem;
+    position: relative;
+  }
+  .tip-num {
+    font-family: var(--font-mono);
+    font-size: 28px;
+    font-weight: 700;
+    color: rgba(79,111,255,0.2);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .tip-title {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+  }
+  .tip-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── CONCLUSION ── */
+  .conclusion {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2.5rem;
+    margin-bottom: 4rem;
+    text-align: center;
+  }
+  .conclusion h2 {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #fff, #c8fff0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .conclusion p {
+    color: var(--muted);
+    max-width: 580px;
+    margin: 0 auto;
+    font-size: 0.95rem;
+  }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 0;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+    position: relative;
+    z-index: 1;
+  }
+</style>
+</head>
+<body>
+
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<div class="wrap">
+
+  <!-- HEADER -->
+  <header>
+    <div class="tag">Apps · Produtividade · 2026</div>
+    <h1>Apps que Aumentam Produtividade</h1>
+    <p class="subtitle">Aplicativos que ajudam você a economizar tempo e ganhar mais eficiência — do gerenciamento de tarefas à IA que trabalha por você.</p>
+    <div class="meta">
+      <span>📅 Maio 2026</span>
+      <span class="dot"></span>
+      <span>⏱ 7 min de leitura</span>
+      <span class="dot"></span>
+      <span>🚀 Apps & Ferramentas</span>
+    </div>
+  </header>
+
+  <hr class="divider">
+
+  <!-- INTRO -->
+  <div class="intro-box">
+    Em 2026, a produtividade deixou de ser sobre fazer mais — e passou a ser sobre <strong>fazer o que importa</strong>. Com a explosão da IA integrada aos apps do dia a dia, tarefas que consumiam horas agora são resolvidas em minutos. Reuniões são transcritas automaticamente, e-mails são priorizados por contexto, projetos se organizam sozinhos. Este guia reúne os aplicativos que realmente fazem diferença na sua rotina — testados, aprovados e usados por quem precisa de resultado.
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat-card">
+      <span class="stat-num">2×</span>
+      <span class="stat-label">Produtividade com IA + RA</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">40%</span>
+      <span class="stat-label">Menos tempo em e-mails</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">3h</span>
+      <span class="stat-label">Economizadas por dia (média)</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">+90%</span>
+      <span class="stat-label">Apps com IA integrada</span>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 1 -->
+  <span class="section-num">// 01 — Gestão de Tarefas e Projetos</span>
+  <h2 class="section-title">Organize Tudo. Esqueça Nada.</h2>
+  <p class="section-desc">Os melhores apps para centralizar projetos, tarefas e colaboração em equipe.</p>
+
+  <div class="apps-grid">
+    <div class="app-card wide" style="--card-accent:#4f6fff; --card-icon-bg:rgba(79,111,255,0.12); --card-badge-bg:rgba(79,111,255,0.12); --card-badge-color:#7c9fff">
+      <div class="card-header">
+        <div class="card-icon">📓</div>
+        <div class="card-meta">
+          <span class="card-badge">Organização · Tudo-em-um</span>
+          <div class="card-title">Notion — O Workspace que Pensa com Você</div>
+        </div>
+      </div>
+      <div class="card-body">O Notion continua sendo o canivete suíço da produtividade em 2026 — e ficou ainda mais poderoso com IA nativa integrada em todas as suas páginas. Organize projetos, tarefas, notas, bases de dados e wikis num único espaço. A IA do Notion resume documentos longos, sugere próximas ações, gera templates automaticamente e até rascunha textos por você. Com o Notion Calendar integrado, suas tarefas aparecem direto na agenda — algo que o Google Calendar sozinho não entrega.</div>
+      <div class="card-features">
+        <span class="chip">IA nativa</span>
+        <span class="chip">Banco de dados</span>
+        <span class="chip">Notion Calendar</span>
+        <span class="chip">Colaboração em tempo real</span>
+        <span class="chip">Templates automáticos</span>
+      </div>
+      <div class="rating-row"><span class="rating-label">Facilidade</span><div class="rating-bar-bg"><div class="rating-bar-fill" style="width:80%;--bar-color:#4f6fff"></div></div><span class="rating-val">8/10</span></div>
+      <div class="rating-row"><span class="rating-label">Poder</span><div class="rating-bar-bg"><div class="rating-bar-fill" style="width:98%;--bar-color:#00d4aa"></div></div><span class="rating-val">10/10</span></div>
+    </div>
+
+    <div class="app-card" style="--card-accent:#00d4aa; --card-icon-bg:rgba(0,212,170,0.1); --card-badge-bg:rgba(0,212,170,0.1); --card-badge-color:#00d4aa">
+      <div class="card-header">
+        <div class="card-icon">✅</div>
+        <div class="card-meta">
+          <span class="card-badge">Tarefas · GTD</span>
+          <div class="card-title">Todoist — Tarefas em Linguagem Natural</div>
+        </div>
+      </div>
+      <div class="card-body">Eleito pela PCMag como um dos melhores apps do ano, o Todoist brilha pela entrada rápida por linguagem natural. Digite "reunião do projeto amanhã às 15h" e o app cria, agenda e lembra automaticamente. Ideal para o método GTD, com tarefas recorrentes poderosas e interface limpa que não distrai.</div>
+      <div class="card-features">
+        <span class="chip">Linguagem natural</span>
+        <span class="chip">Método GTD</span>
+        <span class="chip">Recorrência avançada</span>
+      </div>
+      <div class="rating-row"><span class="rating-label">Facilidade</span><div class="rating-bar-bg"><div class="rating-bar-fill" style="width:95%;--bar-color:#00d4aa"></div></div><span class="rating-val">9.5/10</span></div>
+    </div>
+
+    <div class="app-card" style="--card-accent:#7c5cff; --card-icon-bg:rgba(124,92,255,0.12); --card-badge-bg:rgba(124,92,255,0.12); --card-badge-color:#a080ff">
+      <div class="card-header">
+        <div class="card-icon">🎯</div>
+        <div class="card-meta">
+          <span class="card-badge">Equipes · Visual</span>
+          <div class="card-title">Trello — Quadros que Funcionam</div>
+        </div>
+      </div>
+      <div class="card-body">O Trello continua sendo o rei da gestão visual com quadros, listas e cartões. Em 2026, os Power-Ups permitem automatizar ações repetitivas sem uma linha de código — e o espelhamento de cartões entre quadros diferentes resolveu o problema de quem gerencia múltiplos projetos simultâneos.</div>
+      <div class="card-features">
+        <span class="chip">Kanban visual</span>
+        <span class="chip">Power-Ups</span>
+        <span class="chip">Automações sem código</span>
+      </div>
+      <div class="rating-row"><span class="rating-label">Facilidade</span><div class="rating-bar-bg"><div class="rating-bar-fill" style="width:92%;--bar-color:#7c5cff"></div></div><span class="rating-val">9.2/10</span></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SEÇÃO 2 -->
+  <span class="section-num">// 02 — IA e Automação</span>
+  <h2 class="section-title">Deixe a IA Trabalhar por Você</h2>
+  <p class="section-desc">Assistentes inteligentes que eliminam o trabalho repetitivo e multiplicam o que você entrega.</p>
+
+  <div class="apps-grid">
+    <div class="app-card" style="--card-accent:#ffb347; --card-icon-bg:rgba(255,179,71,0.1); --card-badge-bg:rgba(255,179,71,0.1); --card-badge-color:#ffb347">
+      <div class="card-header">
+        <div class="card-icon">🤖</div>
+        <div class="card-meta">
+          <span class="card-badge">IA · Assistente</span>
+          <div class="card-title">ChatGPT — Assistente para Tudo</div>
+        </div>
+      </div>
+      <div class="card-body">Em 2026, o ChatGPT virou ferramenta padrão de trabalho. Pesquisa, redação, revisão de código, criação de imagens, análise de arquivos e interações por voz — tudo em um só app. Ideal para quem precisa acelerar a produção de conteúdo, estruturar apresentações e resolver problemas complexos em segundos.</div>
+      <div class="card-features">
+        <span class="chip">Texto & código</span>
+        <span class="chip">Análise de arquivos</span>
+        <span class="chip">Imagens por descrição</span>
+        <span class="chip">Voz</span>
+      </div>
+    </div>
+
+    <div class="app-card" style="--card-accent:#4f6fff; --card-icon-bg:rgba(79,111,255,0.12); --card-badge-bg:rgba(79,111,255,0.12); --card-badge-color:#7c9fff">
+      <div class="card-header">
+        <div class="card-icon">🔮</div>
+        <div class="card-meta">
+          <span class="card-badge">Google · Ecossistema</span>
+          <div class="card-title">Gemini — IA Dentro dos Apps Google</div>
+        </div>
+      </div>
+      <div class="card-body">O Gemini é o grande diferencial do Google Workspace em 2026: integrado ao Gmail, Agenda, Drive e Documentos, ele organiza informações, cria textos, resume conteúdos e encontra dados rapidamente dentro dos seus próprios arquivos. Para quem já vive no ecossistema Google, é uma vantagem imbatível.</div>
+      <div class="card-features">
+        <span class="chip">Gmail integrado</span>
+        <span class="chip">Google Drive</span>
+        <span class="chip">Notebook LM Pro</span>
+        <span class="chip">Resumo automático</span>
+      </div>
+    </div>
+
+    <div class="app-card wide" style="--card-accent:#00d4aa; --card-icon-bg:rgba(0,212,170,0.1); --card-badge-bg:rgba(0,212,170,0.1); --card-badge-color:#00d4aa">
+      <div class="card-header">
+        <div class="card-icon">🎙️</div>
+        <div class="card-meta">
+          <span class="card-badge">Transcrição · IA · Reuniões</span>
+          <div class="card-title">Gravador IA com Transcrição em 100+ Idiomas</div>
+        </div>
+      </div>
+      <div class="card-body">Uma das categorias mais valiosas de 2026: gravadores com IA que transcrevem automaticamente reuniões, aulas e entrevistas em mais de 100 idiomas, com até 40 horas de bateria (com estojo de recarga). Os melhores modelos — como o novo gravador da Anker — identificam quem está falando, geram resumos por tópico e exportam atas estruturadas em segundos. O tempo que isso economiza em reuniões é absurdo.</div>
+      <div class="card-features">
+        <span class="chip">+100 idiomas</span>
+        <span class="chip">40h de bateria</span>
+        <span class="chip">Identificação de falantes</span>
+        <span class="chip">Atas automáticas</span>
+        <span class="chip">Resumo por tópico</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HIGHLIGHT -->
+  <div class="highlight">
+    <div class="highlight-title">// Insight de produtividade</div>
+    <p>Estudos de 2026 mostram que profissionais que combinam IA para escrita com apps de gestão de tempo e ferramentas de foco dobram a produtividade medida em entregas concretas. O segredo não é usar mais apps — é usar <strong>menos apps melhores integrados</strong>. A tendência do ano é a consolidação: um assistente IA central, um gerenciador de tarefas e uma ferramenta de foco. Três apps bem escolhidos batem dez mal integrados.</p>
+  </div>
+
+  <!-- SEÇÃO 3 -->
+  <span class="section-num">// 03 — Foco e Gestão do Tempo</span>
+  <h2 class="section-title">Proteja Seu Tempo das Distrações</h2>
+  <p class="section-desc">Apps que bloqueiam ruídos, medem onde você gasta o tempo e criam rituais de foco.</p>
+
+  <div class="apps-grid">
+    <div class="app-card" style="--card-accent:#ff6b6b; --card-icon-bg:rgba(255,107,107,0.1); --card-badge-bg:rgba(255,107,107,0.1); --card-badge-color:#ff8e8e">
+      <div class="card-header">
+        <div class="card-icon">🌳</div>
+        <div class="card-meta">
+          <span class="card-badge">Foco · Gamificação</span>
+          <div class="card-title">Forest — Plante Árvores, Ganhe Foco</div>
+        </div>
+      </div>
+      <div class="card-body">O Forest bloqueia o acesso ao celular enquanto você foca. A cada sessão completada, uma árvore virtual cresce — e você pode contribuir para o plantio de árvores reais. Integrado com cronogramas de atividades, sugere períodos de descanso baseados no nível de fadiga detectado por wearables conectados. Simples, viciante no bom sentido.</div>
+      <div class="card-features">
+        <span class="chip">Bloqueio de apps</span>
+        <span class="chip">Árvores reais</span>
+        <span class="chip">Integração wearables</span>
+      </div>
+    </div>
+
+    <div class="app-card" style="--card-accent:#00d4aa; --card-icon-bg:rgba(0,212,170,0.1); --card-badge-bg:rgba(0,212,170,0.1); --card-badge-color:#00d4aa">
+      <div class="card-header">
+        <div class="card-icon">⏱️</div>
+        <div class="card-meta">
+          <span class="card-badge">Tempo · Freelancers</span>
+          <div class="card-title">Toggl Track — Saiba Onde Vai Seu Tempo</div>
+        </div>
+      </div>
+      <div class="card-body">Com um toque você inicia um timer que registra com precisão quanto tempo dedica a cada projeto ou tarefa. Ideal para freelancers, consultores e qualquer pessoa que queira entender — e otimizar — como usa suas horas. Os relatórios semanais revelam padrões invisíveis de produtividade e procrastinação.</div>
+      <div class="card-features">
+        <span class="chip">Time tracking</span>
+        <span class="chip">Relatórios detalhados</span>
+        <span class="chip">Faturação de horas</span>
+      </div>
+    </div>
+
+    <div class="app-card" style="--card-accent:#7c5cff; --card-icon-bg:rgba(124,92,255,0.12); --card-badge-bg:rgba(124,92,255,0.12); --card-badge-color:#a080ff">
+      <div class="card-header">
+        <div class="card-icon">📅</div>
+        <div class="card-meta">
+          <span class="card-badge">Agenda · Microsoft</span>
+          <div class="card-title">Microsoft To Do — "O Meu Dia" Todo Manhã</div>
+        </div>
+      </div>
+      <div class="card-body">Completamente gratuito e sincronizado entre todos os dispositivos, o Microsoft To Do integra nativamente com Outlook e Microsoft 365. O modo "O Meu Dia" ajuda a definir prioridades de cada manhã em segundos — um ritual simples que muda completamente o controle sobre o dia.</div>
+      <div class="card-features">
+        <span class="chip">Gratuito</span>
+        <span class="chip">Integração Outlook</span>
+        <span class="chip">Modo "O Meu Dia"</span>
+      </div>
+    </div>
+
+    <div class="app-card" style="--card-accent:#ffb347; --card-icon-bg:rgba(255,179,71,0.1); --card-badge-bg:rgba(255,179,71,0.1); --card-badge-color:#ffb347">
+      <div class="card-header">
+        <div class="card-icon">🎮</div>
+        <div class="card-meta">
+          <span class="card-badge">Hábitos · RPG</span>
+          <div class="card-title">Habitica — Sua Vida Como um RPG</div>
+        </div>
+      </div>
+      <div class="card-body">O Habitica transforma metas e hábitos em um jogo RPG. Crie seu personagem e ganhe experiência completando tarefas reais — estudar, exercitar, terminar projetos. A gamificação provou ser uma das estratégias mais eficazes para manter consistência a longo prazo, especialmente para quem se distancia facilmente de metas abstratas.</div>
+      <div class="card-features">
+        <span class="chip">Gamificação</span>
+        <span class="chip">Hábitos diários</span>
+        <span class="chip">Desafios em grupo</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- TABELA COMPARATIVA -->
+  <span class="section-num">// 04 — Comparativo</span>
+  <h2 class="section-title" style="margin-bottom:1.5rem">Qual App é Para Você?</h2>
+
+  <div class="compare-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>App</th>
+          <th>Gratuito</th>
+          <th>IA Integrada</th>
+          <th>Mobile + PC</th>
+          <th>Melhor para</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Notion</td>
+          <td><span class="par">Parcial</span></td>
+          <td><span class="yes">✓</span></td>
+          <td><span class="yes">✓</span></td>
+          <td>Organização completa</td>
+        </tr>
+        <tr>
+          <td>Todoist</td>
+          <td><span class="par">Parcial</span></td>
+          <td><span class="yes">✓</span></td>
+          <td><span class="yes">✓</span></td>
+          <td>Tarefas pessoais (GTD)</td>
+        </tr>
+        <tr>
+          <td>Trello</td>
+          <td><span class="par">Parcial</span></td>
+          <td><span class="par">Básico</span></td>
+          <td><span class="yes">✓</span></td>
+          <td>Projetos em equipe</td>
+        </tr>
+        <tr>
+          <td>ChatGPT</td>
+          <td><span class="par">Parcial</span></td>
+          <td><span class="yes">✓✓</span></td>
+          <td><span class="yes">✓</span></td>
+          <td>Escrita, pesquisa, código</td>
+        </tr>
+        <tr>
+          <td>Gemini</td>
+          <td><span class="par">Parcial</span></td>
+          <td><span class="yes">✓✓</span></td>
+          <td><span class="yes">✓</span></td>
+          <td>Ecossistema Google</td>
+        </tr>
+        <tr>
+          <td>Toggl Track</td>
+          <td><span class="yes">✓</span></td>
+          <td><span class="no">—</span></td>
+          <td><span class="yes">✓</span></td>
+          <td>Controle de horas</td>
+        </tr>
+        <tr>
+          <td>Forest</td>
+          <td><span class="par">Parcial</span></td>
+          <td><span class="par">Básico</span></td>
+          <td><span class="yes">✓</span></td>
+          <td>Foco e bloqueio</td>
+        </tr>
+        <tr>
+          <td>Microsoft To Do</td>
+          <td><span class="yes">✓</span></td>
+          <td><span class="par">Básico</span></td>
+          <td><span class="yes">✓</span></td>
+          <td>Lista diária simples</td>
+        </tr>
+        <tr>
+          <td>Habitica</td>
+          <td><span class="par">Parcial</span></td>
+          <td><span class="no">—</span></td>
+          <td><span class="yes">✓</span></td>
+          <td>Criar hábitos duradouros</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SEÇÃO DICAS -->
+  <span class="section-num">// 05 — Estratégia</span>
+  <h2 class="section-title" style="margin-bottom:1.5rem">Como Montar Seu Setup Ideal</h2>
+
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="tip-num">01</div>
+      <div class="tip-title">Comece com 2 ou 3 apps</div>
+      <div class="tip-desc">Não instale tudo de uma vez. Escolha um gerenciador de tarefas, um assistente IA e uma ferramenta de foco. Menos é mais.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">02</div>
+      <div class="tip-title">Escolha pelo ecossistema</div>
+      <div class="tip-desc">Vive no Google? Aposte em Gemini + Notion. No Microsoft? To Do + Copilot. A integração vale mais que qualquer feature isolada.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">03</div>
+      <div class="tip-title">Meça antes de mudar</div>
+      <div class="tip-desc">Use o Toggl Track por uma semana antes de mudar qualquer hábito. Você vai se surpreender com onde realmente vai seu tempo.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">04</div>
+      <div class="tip-title">Crie rituais, não regras</div>
+      <div class="tip-desc">O "Meu Dia" do To Do todo manhã, ou 25 minutos de Forest antes do almoço. Rituais constantes produzem mais que disciplina esporádica.</div>
+    </div>
+  </div>
+
+  <!-- CONCLUSÃO -->
+  <div class="conclusion">
+    <h2>Trabalhe Menos Horas. Entregue Mais.</h2>
+    <p>A combinação certa de apps pode devolver 2 a 3 horas do seu dia. Não porque você vai trabalhar mais rápido — mas porque vai parar de desperdiçar tempo com o que não importa. Escolha suas ferramentas com intenção, integre-as bem e deixe a tecnologia fazer o trabalho pesado enquanto você foca no que é humano e criativo.</p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>Artigo produzido com curadoria de avaliações do mercado, PCMag, Canaltech e TechTudo · Maio 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>

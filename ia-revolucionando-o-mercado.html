@@ -1,128 +1,862 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IA Revolucionando o Mercado</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IA Revolucionando o Mercado — Como a IA Transforma Empresas e Profissões</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <style>
+  :root {
+    --bg: #060810;
+    --bg2: #0c1022;
+    --surface: #141930;
+    --border: rgba(160, 90, 255, 0.15);
+    --border2: rgba(160, 90, 255, 0.32);
+    --text: #e8ecff;
+    --muted: #7880a8;
+    --accent: #a05aff;
+    --accent2: #cc44ff;
+    --accent3: #ff6fd8;
+    --accent4: #ffb347;
+    --accent5: #4f6fff;
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'Space Grotesk', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
+  html { scroll-behavior: smooth; }
 
-    body{
-      background:#09090b;
-      color:white;
-      font-family:Arial, sans-serif;
-      line-height:1.8;
-    }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 
-    .container{
-      max-width:900px;
-      margin:auto;
-      padding:60px 20px;
-    }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(160,90,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(160,90,255,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
 
-    h1{
-      color:#22d3ee;
-      font-size:52px;
-      margin-bottom:20px;
-    }
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(130px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .orb-1 { width: 560px; height: 560px; background: #7c22cc; top: -180px; right: -120px; opacity: 0.4; }
+  .orb-2 { width: 420px; height: 420px; background: #cc44ff; bottom: 8%; left: -130px; opacity: 0.28; }
+  .orb-3 { width: 320px; height: 320px; background: #ff6fd8; top: 48%; left: 50%; transform: translate(-50%,-50%); opacity: 0.12; }
 
-    h2{
-      color:#22d3ee;
-      margin-top:50px;
-      margin-bottom:20px;
-      font-size:32px;
-    }
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
 
-    p{
-      color:#d4d4d8;
-      margin-bottom:25px;
-      font-size:18px;
-    }
+  /* ── HEADER ── */
+  header {
+    padding: 4rem 0 2rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
 
-    .voltar{
-      display:inline-block;
-      margin-top:40px;
-      padding:14px 24px;
-      background:#22d3ee;
-      color:black;
-      text-decoration:none;
-      border-radius:14px;
-      font-weight:bold;
-    }
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent3);
+    border: 1px solid rgba(255,111,216,0.35);
+    padding: 4px 14px;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+  }
+  .tag::before { content: '//'; opacity: 0.6; }
 
-  </style>
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 7vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #fff 0%, #e0c8ff 45%, #cc44ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1.2rem;
+  }
+
+  .subtitle {
+    font-size: 1.15rem;
+    color: var(--muted);
+    max-width: 580px;
+    margin: 0 auto 2rem;
+  }
+
+  .meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 13px;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    flex-wrap: wrap;
+  }
+  .meta .dot { width: 4px; height: 4px; background: var(--border2); border-radius: 50%; }
+
+  .divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border2), transparent);
+    margin: 3rem 0;
+  }
+
+  /* ── INTRO BOX ── */
+  .intro-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 3.5rem;
+    font-size: 1.05rem;
+    color: #d4c8ff;
+    line-height: 1.8;
+  }
+
+  /* ── STATS ── */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+    gap: 1rem;
+    margin-bottom: 3.5rem;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+    line-height: 1.2;
+  }
+  .stat-label {
+    font-size: 11.5px;
+    color: var(--muted);
+    margin-top: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: var(--font-mono);
+  }
+
+  /* ── SECTION ── */
+  .section-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent3);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .section-desc {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+
+  /* ── CARDS GRID ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+  @media (max-width: 620px) { .cards-grid { grid-template-columns: 1fr; } }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.6rem;
+    transition: border-color 0.25s, transform 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--card-accent, var(--accent));
+    border-radius: 12px 12px 0 0;
+  }
+  .card:hover {
+    border-color: var(--border2);
+    transform: translateY(-3px);
+  }
+  .card.wide { grid-column: 1 / -1; }
+
+  .card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: var(--card-icon-bg, rgba(160,90,255,0.12));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+  }
+  .card-badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-bottom: 6px;
+    background: var(--card-badge-bg, rgba(160,90,255,0.12));
+    color: var(--card-badge-color, var(--accent));
+  }
+  .card-title {
+    font-family: var(--font-display);
+    font-size: 1.12rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+    line-height: 1.25;
+  }
+  .card-body {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+  .card-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 1rem;
+  }
+  .chip {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    border: 1px solid var(--border2);
+    color: var(--muted);
+    letter-spacing: 0.5px;
+  }
+
+  /* ── QUOTE BLOCK ── */
+  .quote-block {
+    border-left: 3px solid var(--accent2);
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    background: rgba(160,90,255,0.05);
+    border-radius: 0 8px 8px 0;
+  }
+  .quote-block p {
+    font-style: italic;
+    color: #d4c8ff;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 0.4rem;
+  }
+  .quote-source {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 1px;
+  }
+
+  /* ── HIGHLIGHT ── */
+  .highlight {
+    background: linear-gradient(135deg, rgba(160,90,255,0.07), rgba(204,68,255,0.07));
+    border: 1px solid rgba(160,90,255,0.22);
+    border-radius: 12px;
+    padding: 2rem 2.2rem;
+    margin: 3rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .highlight::after {
+    content: '🧠';
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 3.5rem;
+    opacity: 0.07;
+  }
+  .highlight-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent3);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+  .highlight p {
+    color: #d4c8ff;
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  /* ── SETOR IMPACT BARS ── */
+  .setor-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 3rem;
+  }
+  .setor-item {
+    display: grid;
+    grid-template-columns: 160px 1fr 48px;
+    align-items: center;
+    gap: 14px;
+  }
+  @media (max-width: 540px) {
+    .setor-item { grid-template-columns: 110px 1fr 40px; gap: 10px; }
+  }
+  .setor-name {
+    font-size: 13px;
+    font-family: var(--font-mono);
+    color: var(--text);
+    letter-spacing: 0.3px;
+  }
+  .setor-bar-bg {
+    height: 6px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .setor-bar-fill {
+    height: 100%;
+    border-radius: 99px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transition: width 0.8s ease;
+  }
+  .setor-pct {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+    text-align: right;
+  }
+
+  /* ── PROFISSÕES ── */
+  .profissoes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+  .prof-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.3rem;
+    position: relative;
+  }
+  .prof-card::after {
+    content: var(--prof-emoji);
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.4rem;
+    opacity: 0.5;
+  }
+  .prof-status {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 999px;
+    display: inline-block;
+    margin-bottom: 0.6rem;
+  }
+  .status-alta  { background: rgba(0,212,100,0.12); color: #00d464; }
+  .status-trans { background: rgba(255,179,71,0.12); color: #ffb347; }
+  .status-nova  { background: rgba(160,90,255,0.15); color: #c580ff; }
+  .prof-title {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.35rem;
+  }
+  .prof-desc {
+    font-size: 0.84rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .prof-salary {
+    margin-top: 0.7rem;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+  }
+
+  /* ── TIMELINE ── */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 3rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 4px;
+    bottom: 4px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -1.7rem;
+    top: 7px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 0 3px rgba(160,90,255,0.25);
+  }
+  .tl-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent3);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .tl-title {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 5px;
+  }
+  .tl-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ── ALERTA / DICA ── */
+  .alert-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent4);
+    border-radius: 10px;
+    padding: 1.4rem 1.8rem;
+    margin-bottom: 2rem;
+  }
+  .alert-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent4);
+    margin-bottom: 0.5rem;
+  }
+  .alert-body {
+    font-size: 0.92rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ── CONCLUSÃO ── */
+  .conclusion {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2.5rem;
+    margin-bottom: 4rem;
+    text-align: center;
+  }
+  .conclusion h2 {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #fff, #e0c8ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .conclusion p {
+    color: var(--muted);
+    max-width: 580px;
+    margin: 0 auto;
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 0;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+    position: relative;
+    z-index: 1;
+  }
+</style>
 </head>
-
 <body>
 
-  <div class="container">
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
 
-    <h1>IA Revolucionando o Mercado 🚀</h1>
+<div class="wrap">
 
-    <p>
-      A Inteligência Artificial deixou de ser apenas um conceito futurista
-      para se tornar uma das tecnologias mais importantes da atualidade.
-      Empresas de todos os tamanhos estão utilizando IA para aumentar
-      produtividade, automatizar processos e criar novas oportunidades.
-    </p>
+  <!-- HEADER -->
+  <header>
+    <div class="tag">Inteligência Artificial · Mercado · 2026</div>
+    <h1>IA Revolucionando o Mercado</h1>
+    <p class="subtitle">Descubra como a inteligência artificial está transformando empresas, profissões e modelos de negócio — e o que isso significa para você.</p>
+    <div class="meta">
+      <span>📅 Maio 2026</span>
+      <span class="dot"></span>
+      <span>⏱ 9 min de leitura</span>
+      <span class="dot"></span>
+      <span>🧠 IA & Futuro do Trabalho</span>
+    </div>
+  </header>
 
-    <h2>Automação Inteligente</h2>
+  <hr class="divider">
 
-    <p>
-      Ferramentas baseadas em IA conseguem executar tarefas repetitivas
-      em segundos. Isso inclui atendimento automático, geração de textos,
-      análise de dados e suporte ao cliente.
-    </p>
+  <!-- INTRO -->
+  <div class="intro-box">
+    Em 2026, a inteligência artificial cruzou o limiar da disrupção. Deixou de ser uma promessa de laboratório e tornou-se o principal motor da economia global — presente em estratégias corporativas, processos industriais, diagnósticos médicos e fluxos jurídicos. <strong>Não estamos mais discutindo se a IA vai impactar os negócios.</strong> A questão agora é com que velocidade cada setor está se adaptando — e quem será protagonista ou vítima dessa transformação.
+  </div>
 
-    <p>
-      Grandes empresas já economizam milhões usando algoritmos para
-      otimizar operações e reduzir erros humanos.
-    </p>
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat-card">
+      <span class="stat-num">US$ 4,8T</span>
+      <span class="stat-label">Mercado global de IA até 2033</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">78%</span>
+      <span class="stat-label">Empresas brasileiras ampliando IA</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">170M</span>
+      <span class="stat-label">Novos empregos criados até 2030</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">+47%</span>
+      <span class="stat-label">Salário maior com habilidades em IA</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">R$ 18,7bi</span>
+      <span class="stat-label">Investimento em IA no Brasil (2025)</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">340%</span>
+      <span class="stat-label">Crescimento no uso profissional de IA no BR</span>
+    </div>
+  </div>
 
-    <h2>Novas Profissões</h2>
+  <!-- SEÇÃO 1: SETORES -->
+  <span class="section-num">// 01 — Impacto por Setor</span>
+  <h2 class="section-title">Quem Está Sendo Transformado Agora</h2>
+  <p class="section-desc">A IA não avança de forma uniforme — alguns setores já vivem a disrupção completa enquanto outros ainda estão nos primeiros passos.</p>
 
-    <p>
-      Ao mesmo tempo que algumas funções estão sendo automatizadas,
-      novas profissões estão surgindo. Especialistas em IA,
-      engenharia de prompts e automação digital estão entre as áreas
-      mais valorizadas atualmente.
-    </p>
+  <div class="cards-grid">
 
-    <h2>Impacto nas Empresas</h2>
+    <div class="card wide" style="--card-accent:#a05aff; --card-icon-bg:rgba(160,90,255,0.12); --card-badge-bg:rgba(160,90,255,0.12); --card-badge-color:#c580ff">
+      <div class="card-icon">⚖️</div>
+      <span class="card-badge">Jurídico · Alto impacto</span>
+      <div class="card-title">Direito — Análise de Contratos em Segundos</div>
+      <div class="card-body">O setor jurídico é um dos mais impactados em 2026. Ferramentas de IA analisam contratos extensos, identificam cláusulas de risco, pesquisam jurisprudência e redigem petições iniciais em frações do tempo que um advogado levaria. Escritórios que adotaram IA relatam redução de até 60% no tempo de análise documental — liberando os profissionais para o que realmente exige raciocínio estratégico: negociação, argumentação e relação com o cliente.</div>
+      <div class="card-features">
+        <span class="chip">Análise de contratos</span>
+        <span class="chip">Pesquisa de jurisprudência</span>
+        <span class="chip">Redação de petições</span>
+        <span class="chip">−60% tempo documental</span>
+      </div>
+    </div>
 
-    <p>
-      Negócios que adotam Inteligência Artificial conseguem tomar decisões
-      mais rápidas, entender melhor seus clientes e aumentar lucros.
-    </p>
+    <div class="card" style="--card-accent:#ff6fd8; --card-icon-bg:rgba(255,111,216,0.1); --card-badge-bg:rgba(255,111,216,0.1); --card-badge-color:#ff6fd8">
+      <div class="card-icon">🏥</div>
+      <span class="card-badge">Saúde · Diagnóstico</span>
+      <div class="card-title">Medicina — IA como Assistente Clínico</div>
+      <div class="card-body">Em 2026, algoritmos de IA auxiliam médicos na leitura de exames de imagem, identificação de padrões em laudos e sugestão de diagnósticos diferenciais. A IA não substitui o médico — ela amplifica sua capacidade, reduzindo erros de diagnóstico e acelerando a triagem em prontos-socorros sobrecarregados. Hospitais pioneiros reportam redução de 30% em erros de medicação.</div>
+      <div class="card-features">
+        <span class="chip">Leitura de exames</span>
+        <span class="chip">Diagnóstico assistido</span>
+        <span class="chip">Triagem inteligente</span>
+      </div>
+    </div>
 
-    <p>
-      A IA também está revolucionando marketing, medicina, educação,
-      programação e até criação de conteúdo.
-    </p>
+    <div class="card" style="--card-accent:#ffb347; --card-icon-bg:rgba(255,179,71,0.1); --card-badge-bg:rgba(255,179,71,0.1); --card-badge-color:#ffb347">
+      <div class="card-icon">💰</div>
+      <span class="card-badge">Finanças · Automação</span>
+      <div class="card-title">Setor Financeiro — Decisões em Milissegundos</div>
+      <div class="card-body">Bancos e fintechs usam IA para análise de crédito em tempo real, detecção de fraudes, personalização de investimentos e atendimento automatizado 24h. Modelos preditivos identificam riscos sistêmicos antes que se tornem crises. O profissional financeiro que não souber interpretar os dados que a IA entrega ficará obsoleto rapidamente.</div>
+      <div class="card-features">
+        <span class="chip">Análise de crédito</span>
+        <span class="chip">Detecção de fraude</span>
+        <span class="chip">Atendimento 24h</span>
+      </div>
+    </div>
 
-    <h2>O Futuro da IA</h2>
+    <div class="card" style="--card-accent:#4f6fff; --card-icon-bg:rgba(79,111,255,0.12); --card-badge-bg:rgba(79,111,255,0.12); --card-badge-color:#7c9fff">
+      <div class="card-icon">📣</div>
+      <span class="card-badge">Marketing · Criação</span>
+      <div class="card-title">Marketing — Campanhas que se Escrevem Sozinhas</div>
+      <div class="card-body">A IA generativa transformou completamente o marketing de conteúdo. Campanhas são criadas, testadas e otimizadas em horas. Profissionais de marketing agora orquestram IAs — definindo estratégia, tom e objetivos — enquanto a geração de texto, imagem e vídeo é automatizada. Quem domina esse papel de "maestro" multiplica sua entrega por 5x.</div>
+      <div class="card-features">
+        <span class="chip">Geração de conteúdo</span>
+        <span class="chip">A/B testing automático</span>
+        <span class="chip">Personalização em escala</span>
+      </div>
+    </div>
 
-    <p>
-      Especialistas acreditam que a Inteligência Artificial será tão
-      importante quanto a internet foi nos anos 2000.
-    </p>
+    <div class="card" style="--card-accent:#00d4aa; --card-icon-bg:rgba(0,212,170,0.1); --card-badge-bg:rgba(0,212,170,0.1); --card-badge-color:#00d4aa">
+      <div class="card-icon">👥</div>
+      <span class="card-badge">RH · Recrutamento</span>
+      <div class="card-title">Recursos Humanos — Talentos Encontrados por IA</div>
+      <div class="card-body">Plataformas como a da Gupy — pioneira em IA para recrutamento no Brasil — revolucionaram a seleção de talentos. A IA mapeia afinidade cultural, analisa competências comportamentais e reduz viés inconsciente nos processos seletivos. Empresas que adotaram IA no RH reduziram o tempo médio de contratação de semanas para dias.</div>
+      <div class="card-features">
+        <span class="chip">Match inteligente</span>
+        <span class="chip">Redução de viés</span>
+        <span class="chip">Onboarding automatizado</span>
+      </div>
+    </div>
 
-    <p>
-      Empresas e profissionais que aprenderem a utilizar IA agora terão
-      enorme vantagem competitiva nos próximos anos.
-    </p>
-
-    <a class="voltar" href="index.html">
-      ← Voltar para o site
-    </a>
+    <div class="card" style="--card-accent:#cc44ff; --card-icon-bg:rgba(204,68,255,0.1); --card-badge-bg:rgba(204,68,255,0.1); --card-badge-color:#dd88ff">
+      <div class="card-icon">🔬</div>
+      <span class="card-badge">Ciência · Pesquisa</span>
+      <div class="card-title">Ciência — IA Propõe Experimentos Sozinha</div>
+      <div class="card-body">Em 2026, a IA transcende o papel de ferramenta científica e torna-se assistente de laboratório autônomo — capaz de sugerir novos experimentos e, em alguns casos, executá-los. Pesquisas que levariam anos estão sendo concluídas em meses. Espera-se que algoritmos façam descobertas científicas relevantes sem supervisão humana direta ainda neste ano.</div>
+      <div class="card-features">
+        <span class="chip">Pesquisa acelerada</span>
+        <span class="chip">Descoberta autônoma</span>
+        <span class="chip">Modelagem preditiva</span>
+      </div>
+    </div>
 
   </div>
+
+  <hr class="divider">
+
+  <!-- IMPACTO POR SETOR - BARRAS -->
+  <span class="section-num">// 02 — Adoção de IA</span>
+  <h2 class="section-title">Nível de Transformação por Setor</h2>
+  <p class="section-desc">Com base em dados de 2026 do Fórum Econômico Mundial, McKinsey e Gartner.</p>
+
+  <div class="setor-list">
+    <div class="setor-item"><span class="setor-name">Tecnologia</span><div class="setor-bar-bg"><div class="setor-bar-fill" style="width:96%"></div></div><span class="setor-pct">96%</span></div>
+    <div class="setor-item"><span class="setor-name">Financeiro</span><div class="setor-bar-bg"><div class="setor-bar-fill" style="width:88%"></div></div><span class="setor-pct">88%</span></div>
+    <div class="setor-item"><span class="setor-name">Marketing</span><div class="setor-bar-bg"><div class="setor-bar-fill" style="width:85%"></div></div><span class="setor-pct">85%</span></div>
+    <div class="setor-item"><span class="setor-name">Saúde</span><div class="setor-bar-bg"><div class="setor-bar-fill" style="width:78%"></div></div><span class="setor-pct">78%</span></div>
+    <div class="setor-item"><span class="setor-name">Jurídico</span><div class="setor-bar-bg"><div class="setor-bar-fill" style="width:72%"></div></div><span class="setor-pct">72%</span></div>
+    <div class="setor-item"><span class="setor-name">Recursos Humanos</span><div class="setor-bar-bg"><div class="setor-bar-fill" style="width:68%"></div></div><span class="setor-pct">68%</span></div>
+    <div class="setor-item"><span class="setor-name">Indústria</span><div class="setor-bar-bg"><div class="setor-bar-fill" style="width:63%"></div></div><span class="setor-pct">63%</span></div>
+    <div class="setor-item"><span class="setor-name">Educação</span><div class="setor-bar-bg"><div class="setor-bar-fill" style="width:55%"></div></div><span class="setor-pct">55%</span></div>
+    <div class="setor-item"><span class="setor-name">Agronegócio</span><div class="setor-bar-bg"><div class="setor-bar-fill" style="width:47%"></div></div><span class="setor-pct">47%</span></div>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="quote-block">
+    <p>"A grande mudança de 2026 não é apenas tecnológica, é estrutural: saímos de um modelo onde a IA sugere para um onde ela executa."</p>
+    <span class="quote-source">— Kenneth Corrêa, professor da FGV e especialista em tecnologias emergentes</span>
+  </div>
+
+  <!-- HIGHLIGHT -->
+  <div class="highlight">
+    <div class="highlight-title">// O cenário brasileiro</div>
+    <p>Em janeiro de 2026, o IBGE reportou que <strong>12,3 milhões de brasileiros</strong> já utilizam ferramentas de IA em suas atividades profissionais — crescimento de 340% em relação a 2024. O investimento de empresas brasileiras em IA atingiu R$ 18,7 bilhões em 2025, e 67% dos profissionais de tecnologia do país já utilizam IA diariamente. O Brasil também lançou seu Plano Nacional de Inteligência Artificial, com R$ 23 bilhões previstos até 2028.</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SEÇÃO 3: PROFISSÕES -->
+  <span class="section-num">// 03 — Profissões</span>
+  <h2 class="section-title">Carreiras em Alta, em Transformação e Novas</h2>
+  <p class="section-desc">Segundo o Guia Salarial 2026 da Robert Half e o relatório Future of Jobs do Fórum Econômico Mundial.</p>
+
+  <div class="profissoes-grid">
+
+    <div class="prof-card" style="--prof-emoji:'🤖'">
+      <span class="prof-status status-nova">Nova profissão</span>
+      <div class="prof-title">Engenheiro de Prompt</div>
+      <div class="prof-desc">Especialista em criar, testar e otimizar instruções para modelos de IA. Uma das profissões mais valorizadas e escassas do mercado.</div>
+      <div class="prof-salary">↑ Até R$ 25.000/mês</div>
+    </div>
+
+    <div class="prof-card" style="--prof-emoji:'📊'">
+      <span class="prof-status status-alta">Em alta</span>
+      <div class="prof-title">Cientista de Dados</div>
+      <div class="prof-desc">Profissional que traduz dados brutos em insights estratégicos. Demanda crescente em todos os setores sem exceção.</div>
+      <div class="prof-salary">↑ R$ 12k–R$ 30k/mês</div>
+    </div>
+
+    <div class="prof-card" style="--prof-emoji:'🔐'">
+      <span class="prof-status status-alta">Em alta</span>
+      <div class="prof-title">Especialista em IA Ética</div>
+      <div class="prof-desc">Garante que sistemas de IA operem de forma justa, transparente e conforme regulamentações como o AI Act europeu.</div>
+      <div class="prof-salary">↑ Até R$ 22.000/mês</div>
+    </div>
+
+    <div class="prof-card" style="--prof-emoji:'🧑‍💻'">
+      <span class="prof-status status-alta">Em alta</span>
+      <div class="prof-title">Desenvolvedor de Agentes IA</div>
+      <div class="prof-desc">Cria sistemas autônomos capazes de executar tarefas completas, integrar APIs e tomar decisões sem intervenção humana.</div>
+      <div class="prof-salary">↑ R$ 15k–R$ 35k/mês</div>
+    </div>
+
+    <div class="prof-card" style="--prof-emoji:'📝'">
+      <span class="prof-status status-trans">Em transformação</span>
+      <div class="prof-title">Analista Jurídico</div>
+      <div class="prof-desc">O papel muda: menos triagem e revisão manual, mais estratégia, negociação e relacionamento com o cliente. Habilidades humanas no centro.</div>
+      <div class="prof-salary">→ Perfil híbrido exigido</div>
+    </div>
+
+    <div class="prof-card" style="--prof-emoji:'🎨'">
+      <span class="prof-status status-trans">Em transformação</span>
+      <div class="prof-title">Designer / Criativo</div>
+      <div class="prof-desc">A execução técnica vai para a IA; o direcionamento criativo, curadoria e identidade de marca permanecem irreversivelmente humanos.</div>
+      <div class="prof-salary">→ Curadoria > execução</div>
+    </div>
+
+  </div>
+
+  <!-- ALERTA -->
+  <div class="alert-box">
+    <div class="alert-title">⚡ O que o Fórum Econômico Mundial projeta</div>
+    <div class="alert-body">Globalmente, <strong>170 milhões de novos empregos</strong> serão criados até 2030 em função da IA — mas 92 milhões de funções tradicionais podem deixar de existir. O saldo é positivo, mas a janela de adaptação é estreita. Profissionais que desenvolverem <em>AI literacy</em> (capacidade de trabalhar com IA), pensamento crítico e habilidades sociais terão 31% mais oportunidades no LinkedIn já em 2026.</div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SEÇÃO 4: LINHA DO TEMPO -->
+  <span class="section-num">// 04 — Como chegamos aqui</span>
+  <h2 class="section-title">A Virada que Ninguém Previu Tão Rápido</h2>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-label">2022–2023 · Origem</div>
+      <div class="tl-title">Explosão da IA Generativa</div>
+      <div class="tl-desc">O lançamento do ChatGPT em 2022 tornou a IA concreta para o público geral. Em 2023, 79% das empresas entrevistadas pela McKinsey já tinham tido contato com IA Generativa e 22% usavam regularmente. A fase de experimentação começou.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-label">2024–2025 · Adoção</div>
+      <div class="tl-title">Da Experimentação para a Estratégia</div>
+      <div class="tl-desc">As empresas saíram dos projetos piloto e passaram a integrar IA em operações reais. Os gastos globais dispararam: Amazon, Google e Microsoft injetaram juntas mais de US$ 300 bilhões em infraestrutura de IA só em 2025. No Brasil, 67% das empresas passaram a considerar IA uma prioridade estratégica.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-label">2026 · Ruptura</div>
+      <div class="tl-title">A IA Executa — Não Apenas Sugere</div>
+      <div class="tl-desc">O ano de 2026 marca a transição definitiva: agentes autônomos passam a executar processos completos, tomar decisões técnicas e aprender com cada iteração. A Gartner projeta que 40% dos aplicativos empresariais contarão com agentes de IA específicos até o final de 2026. A infraestrutura invisível está instalada.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-label">2027–2030 · Futuro</div>
+      <div class="tl-title">IA como Infraestrutura — Como a Eletricidade</div>
+      <div class="tl-desc">O mercado de IA deve atingir US$ 4,8 trilhões até 2033. A IA deixará de ser um diferencial competitivo e se tornará infraestrutura básica — tão invisível e essencial quanto a internet. Quem não souber usá-la será equivalente a quem não sabe usar e-mail hoje.</div>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 5: O QUE FAZER -->
+  <span class="section-num">// 05 — O Que Fazer Agora</span>
+  <h2 class="section-title" style="margin-bottom:0.5rem">Como se Posicionar Nessa Transformação</h2>
+  <p class="section-desc" style="margin-bottom:1.5rem">Para profissionais e empresas que querem ser protagonistas, não vítimas.</p>
+
+  <div class="cards-grid">
+    <div class="card" style="--card-accent:#a05aff; --card-icon-bg:rgba(160,90,255,0.1); --card-badge-bg:rgba(160,90,255,0.1); --card-badge-color:#c580ff">
+      <div class="card-icon">🎓</div>
+      <span class="card-badge">Para profissionais</span>
+      <div class="card-title">Desenvolva AI Literacy</div>
+      <div class="card-body">Não é preciso ser programador para usar IA. Desenvolver a capacidade de trabalhar com ferramentas de IA, entender seus limites e aplicá-las na sua área específica é a habilidade mais valiosa de 2026. Plataformas como Alura, Coursera e FIAP oferecem trilhas práticas em todas as áreas.</div>
+      <div class="card-features">
+        <span class="chip">Alura + FIAP</span>
+        <span class="chip">Cursos práticos</span>
+        <span class="chip">Certificações</span>
+      </div>
+    </div>
+
+    <div class="card" style="--card-accent:#ff6fd8; --card-icon-bg:rgba(255,111,216,0.1); --card-badge-bg:rgba(255,111,216,0.1); --card-badge-color:#ff6fd8">
+      <div class="card-icon">🏢</div>
+      <span class="card-badge">Para empresas</span>
+      <div class="card-title">Comece Pequeno, Escale Rápido</div>
+      <div class="card-body">Segundo a Bosch Connected Industry, 95% dos projetos de IA ainda não geram valor porque tentam fazer tudo de uma vez. O caminho certo é identificar um processo com alta repetição e baixo risco, automatizar com IA, medir o resultado — e só então expandir para áreas mais estratégicas.</div>
+      <div class="card-features">
+        <span class="chip">Processos repetitivos</span>
+        <span class="chip">Métricas claras</span>
+        <span class="chip">Escalada gradual</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- CONCLUSÃO -->
+  <div class="conclusion">
+    <h2>Humanos + Máquinas. Não Humanos vs. Máquinas.</h2>
+    <p>O futuro do trabalho não é uma disputa — é uma colaboração. A IA está se tornando uma infraestrutura invisível, como a eletricidade, potencializando todas as áreas. As habilidades que nenhum algoritmo reproduz — empatia, criatividade, pensamento crítico, liderança — nunca foram tão valiosas. Quem entender isso e se adaptar agora não apenas sobreviverá à revolução da IA. <em>Será quem vai liderá-la.</em></p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>Artigo produzido com dados do FMI, Fórum Econômico Mundial, McKinsey, Gartner, IBGE, Robert Half e TechTudo · Maio 2026</p>
+  </div>
+</footer>
 
 </body>
 </html>
